@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import FileImport from './FileImport';
+import HtmlEditor from './HtmlEditor';
+import HtmlToDocx from './HtmlToDocx';
+import { ChakraProvider } from '@chakra-ui/react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [fileContent, setFileContent] = useState('');
+
   return (
+    <ChakraProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>WORD to HTML Converter</h1>
+      <FileImport onFileLoad={setFileContent} />
+      <HtmlEditor initialContent={fileContent} />
+      <h2>HTML TO WORD CONVERTER</h2>
+      <HtmlToDocx />
     </div>
+    </ChakraProvider>
   );
-}
+};
 
 export default App;
